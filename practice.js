@@ -5,15 +5,20 @@ var outer = function(){
   return function(){
     return 'The original name was ' + name;
   }
-}
+};
 //Above you're given a function that returns another function which has a closure over the name variable.
 //Invoke outer saving the return value into another variable called 'inner'.
 
   //Code Here
 
+var inner = outer();
+
+
 //Once you do that, invoke inner.
 
   //Code Here
+
+inner();
 
 
 
@@ -34,6 +39,9 @@ var callFriend = function(){
 
   //Code Here
 
+var hello = callFriend();
+
+hello('435-215-9248');
 
 
 //Next Problem
@@ -51,6 +59,17 @@ var callFriend = function(){
   count() // 3
   count() // 4
 
+var makeCounter = function() {
+  var counter = 0;
+  return function() {
+    counter += 1;
+    return counter;
+  }
+};
+
+count();
+
+
 
 
 //Next Problem
@@ -60,9 +79,63 @@ var callFriend = function(){
 /*
   Write a function that accepts another function as it's only argument and returns a new function
   (which invokes the original function that was passed in) that can only ever be executed once.
-  Once completed, add a second arguments that allows the function to be invoked N number of times.
+  
+  Once completed, add a second argument that allows the function to be invoked N number of times.
   After the function has been called N number of times, console.log('STAHHP');
 */
+
+var orig = function(outer) {
+    return function() {
+      outer();
+    }
+};
+
+var outer = function() {
+  alert('Hello');
+};
+
+
+
+
+var orig = function(Fn, N) {
+  var counter = 0;
+  return function() {
+    if ((counter += 1) < N) {
+      return Fn();
+    }
+    else {
+      console.log('STAHHP');
+    }
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
